@@ -53,6 +53,7 @@ btnroll.addEventListener('click', ()=>{
      }
 });
 
+// btn hold working
 btnhold.addEventListener('click' ,()=>{
 
     totalscore = totalscore + currentscore;
