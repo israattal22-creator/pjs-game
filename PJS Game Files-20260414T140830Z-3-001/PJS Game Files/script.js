@@ -5,11 +5,11 @@ const restartbtn = document.getElementById('restart');
 
 
 const dice = document.getElementById('dice')
-const current0 = document.getElementById('current--0')
+const winner = document.getElementById('winner--img')
 const score0 = document.getElementById('score--0')
 
 let currentscore = 0;
-let totalscore = 0;
+let totalscore = [0,0];
 
 let currentplayer = 0;
 
@@ -53,13 +53,27 @@ btnroll.addEventListener('click', ()=>{
      }
 });
 
-// btn hold working
+
 btnhold.addEventListener('click' ,()=>{
 
-    totalscore = totalscore + currentscore;
-    score0.innerHTML = totalscore
+    totalscore[currentplayer] = totalscore[currentplayer] + currentscore;
+    document.getElementById(`score--${currentplayer}`).innerText = totalscore[currentplayer]
     document.querySelector(`.player--${currentplayer}`).classList.remove('player--active');
-         
+
+    if(totalscore[currentplayer] >=35){
+
+        console.log(totalscore[currentplayer]);
+        dice.classList.add('hidden');
+        winner.style.display='block';
+
+        document
+        .querySelector(`.player--${currentplayer}`)
+        .classList.add('player--winner');
+
+    
+    }
+        else
+        { 
         currentscore= 0
         document.getElementById(`current--${currentplayer}`).innerText = currentscore
 
@@ -67,6 +81,6 @@ btnhold.addEventListener('click' ,()=>{
 
         
         document.querySelector(`.player--${currentplayer}`).classList.add('player--active');
-    
+        }
 
 })
